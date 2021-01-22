@@ -20,6 +20,7 @@ To start the MIKI chatbot click on the lower right chat icon.
 <script>
   WebChat.default.init({
     selector: "#webchat",
+    interval: 200,
     initPayload: "/start",
     customData: {"language": "de"}, // arbitrary custom data. Stay minimal as this will be added to the socket
     socketUrl: "https://mikichatbot.ydns.eu",
