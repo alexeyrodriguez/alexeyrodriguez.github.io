@@ -13,27 +13,35 @@ This page is demonstrating how to connect the webchat client that can be found i
 
 To start the MIKI chatbot click on the lower right chat icon.
 
-<div id="webchat"></div>
-<script src="https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.min.js">
-// you can add a version tag if you need, e.g for version 0.11.5 https://cdn.jsdelivr.net/npm/rasa-webchat@0.11.5/lib/index.min.js
-</script>
-<script>
-  WebChat.default.init({
-    selector: "#webchat",
-    customMessageDelay: (message) => {
-      let delay = message.length * 10;
-      if (delay > 1 * 1000) delay = 1 * 1000;
-      if (delay < 800 / 3) delay = 800 / 3;
-      return delay;
-    },
-    initPayload: "/start",
-    customData: {"language": "de"}, // arbitrary custom data. Stay minimal as this will be added to the socket
-    socketUrl: "https://miki.docloop.net",
-    socketPath: "/socket.io/",
-    title: "MIKI Chatbot",
-    // subtitle: "Subtitle",
-    params: {"storage": "session"} // can be set to "local"  or "session". details in storage section.
-  })
+<script>!(function () {
+  let e = document.createElement("script"),
+    t = document.head || document.getElementsByTagName("head")[0];
+  (e.src =
+    "https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"),
+    (e.async = !0),
+    (e.onload = () => {
+      window.WebChat.default(
+        {
+          customData: { language: "de" },
+          selector: "#webchat",
+          customMessageDelay: (message) => {
+            let delay = message.length * 10;
+            if (delay > 1 * 1000) delay = 1 * 1000;
+            if (delay < 800 / 3) delay = 800 / 3;
+            return delay;
+          },
+          initPayload: "/start",
+          socketUrl: "https://miki.docloop.net",
+          socketPath: "/socket.io/",
+          title: "MIKI Chatbot",
+          // subtitle: "Subtitle",
+          params: {"storage": "session"} // can be set to "local"  or "session". details in storage section.
+        },
+        null
+      );
+    }),
+    t.insertBefore(e, t.firstChild);
+})();
 </script>
 
 </body>
